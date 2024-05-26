@@ -21,7 +21,7 @@ def ConvertMaterials():
     suffix_normal = "_NORMAL"
     suffix_diffuse = "_DIFFUSE"
 
-    texture_path =  'PATH TO THE TEXTURES'
+    texture_path =  'C:\\PATH\\TO\\THE\\TEXTURES'
     
     for mat in bpy.data.materials:
         if mat.node_tree != None:
@@ -31,7 +31,6 @@ def ConvertMaterials():
                         node = mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].links[0].from_node
                         if node.type == "TEX_IMAGE":
                             print(f"Converting BSDF to MSFS: {mat.name}")
-                            print(f"\tDiffuse texture: {filename_diffuse}")
 
                             # Set the MSFS base color material do the be the same as the Principled BSDF base color material
                             # NOTE: when setting msfs_material_type, the MSFS GLTF Exporter will automatically delete the BSDF material
@@ -39,7 +38,7 @@ def ConvertMaterials():
                             mat.msfs_material_type = 'msfs_standard'
 
                             # Try to find the NORMAL and ARM textures based on the base color texture
-                            filename_diffuse = node.image.filepath
+                            filename_diffuse = mat.msfs_base_color_texture.filepath
                             filepath, filename = os.path.split(filename_diffuse)
                             
                             filename_normal = os.path.join(texture_path, filename.replace(suffix_diffuse + '.', suffix_normal + '.'))
