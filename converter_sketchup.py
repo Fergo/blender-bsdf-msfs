@@ -1,6 +1,9 @@
 import bpy
 import os
 
+# Blender - Principled BSDF to MSFS Material Params
+# Created by: Fernando Birck - 2024 
+
 # HOW IT WORKS
 # This script converts from Principled BSDF to MSFS Material Params in Blender.
 # It's intended to be used with the Skechtup Blender Importer, but might work with other imported meshes too.
@@ -55,30 +58,3 @@ def ConvertMaterials():
                                 print(f"\tFailed to find ARM texture: {filename_arm}")
 if __name__ == "__main__":
     ConvertMaterials()
-
-# for mat in bpy.data.materials:
-    # if mat.node_tree != None:
-        # if "Principled BSDF" in mat.node_tree.nodes:
-            # if "Base Color" in mat.node_tree.nodes["Principled BSDF"].inputs:
-                # if len(mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].links) > 0:
-                    # node = mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].links[0].from_node
-                    # if node.type == "TEX_IMAGE":
-                        # change the diffuse texture and material type
-                        # mat.msfs_base_color_texture = node.image
-                        # mat.msfs_material_type = 'msfs_standard'
-                        
-                        # # try to find the normal map
-                        # try:
-                            # mat_normal = bpy.data.materials[mat.name + suffix_normal]
-                            # image_normal = mat_normal.node_tree.nodes["Principled BSDF"].inputs["Base Color"].links[0].from_node
-                            # mat.msfs_normal_texture = image_normal
-                        # finally:
-                            # pass
-                        
-                        # # try to find the ARM map
-                        # try:
-                            # mat_arm = bpy.data.materials[mat.name + suffix_arm]
-                            # image_arm = mat_arm.node_tree.nodes["Principled BSDF"].inputs["Base Color"].links[0].from_node
-                            # mat.msfs_occlusion_metallic_roughness_texture = image_arm
-                        # finally:
-                            # pass
