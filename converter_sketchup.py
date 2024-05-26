@@ -55,5 +55,6 @@ def ConvertMaterials():
                                 print(f"\tARM texture found and loaded: {filename_arm}")
                             else:
                                 print(f"\tFailed to find ARM texture: {filename_arm}")
+                                
 if __name__ == "__main__":
     ConvertMaterials()
